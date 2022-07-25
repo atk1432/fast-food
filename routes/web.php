@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Extensions\ConvertVnToEn;
 use App\Models\Product;
+use App\Models\User;
 
 
 /*
@@ -26,6 +27,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('products', ProductController::class)->except([
         'show', 'destroy'
     ]);
+
+    Route::resource('users', AuthController::class);
 
 });
 
@@ -56,4 +59,7 @@ Route::controller(
 )->name('auth.')->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::get('/register', 'register')->name('register');
+
+    Route::post('/login/auth', 'auth')->name('auth');
+    Route::post('/register/create', 'create')->name('create');
 });

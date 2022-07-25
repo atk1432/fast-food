@@ -1,5 +1,10 @@
 @extends('share.layout')     
 
+@section('head')
+<title>Trang chủ</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+@endsection
+
 @section('content')
 <div class="body">        
     <div class="search container-md">

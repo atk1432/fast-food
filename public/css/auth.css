@@ -4,14 +4,31 @@
     align-items: center;
 }
 
-.auth {
+body {
     background-image: url('/img/background.webp');
-    height: 100vh;
+}
+
+.auth {
+    height: 100%;
+    padding: 53px 0;
 }
 
 .auth__brand {
     width: 132px;
     margin-bottom: 24px;
+}
+
+.auth__error {
+    margin-top: -6px;
+    padding: 2px 16px;
+    border-radius: 10px;
+    width: 80%;
+    background-color: red;
+    color: #fff;
+}
+
+.auth__error::first-letter {
+    text-transform: uppercase;
 }
 
 .auth__item {

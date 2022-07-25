@@ -18,7 +18,10 @@
       <th scope="col"></th>
     	<th scope="col">id</th>
       @foreach ($columns as $column)
-      	@if ($column != 'id' && $column != 'created_at' && $column != 'updated_at')
+      	@if ($column != 'id' && 
+             $column != 'created_at' && 
+             $column != 'updated_at' &&
+             !in_array($column, $hidden ?? []))
       		<th scope="col">{{ $column }}</th>
       	@endif
       @endforeach
@@ -34,7 +37,10 @@
         </td>
 	      <th scope="row">{{ $item->id }}</th>
 	      @foreach ($columns as $column)
-      		@if ($column != 'id' && $column != 'created_at' && $column != 'updated_at')
+      		@if ($column != 'id' && 
+                 $column != 'created_at' && 
+                 $column != 'updated_at' &&
+                 !in_array($column, $hidden ?? []))
       			<td>{{ $item[$column] }}</td>
       		@endif
       	@endforeach

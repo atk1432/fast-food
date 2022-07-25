@@ -10,7 +10,18 @@
     </head>
     <body>
 
-        @yield('content')
+        <div class="auth flex-element">            
+            <div class="container" style="max-width: 540px;">
+                <div class="row">
+                    <div class="col col-sm-12 col-12 flex-element">                
+                        <a href="/">               
+                            <img src="/img/mcdonald.png" class="auth__brand">
+                        </a>              
+                    </div>
+                    @yield('content')
+                </div>
+            </div>
+        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>

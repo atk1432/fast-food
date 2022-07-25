@@ -1,5 +1,10 @@
 @extends('share.layout')
 
+@section('head')
+<title>{{ $product->name }}</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+@endsection
+
 @section('content')
 <div class="cart container-md">
 	<h2 class="description">{{ $product->name }}</h2>
