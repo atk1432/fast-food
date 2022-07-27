@@ -2,7 +2,11 @@
 
 @section('head')
 <title>Trang chủ</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+@endsection
+
+@section('index_script')
+<script src="/js/index.js"></script>
 @endsection
 
 @section('content')
@@ -135,8 +139,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('index_script')
-<script src="/js/index.js"></script>
 @endsection

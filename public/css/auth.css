@@ -1,9 +1,3 @@
-.flex-element {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 body {
     background-image: url('/img/background.webp');
 }

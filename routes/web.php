@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Extensions\ConvertVnToEn;
@@ -32,14 +33,16 @@ Route::prefix('admin')->group(function () {
 
 });
 
+
 Route::get('/', function () {
     return view('index', [
         'products' => Product::all()
     ]);
 });
+
  
 Route::get('/product/{id}/{name}', function ($id, $name) {
-    $product = Product::find($id);
+    $product = Product::findOrFail($id);
 
     $convert = new ConvertVnToEn($product->name);
     $name_product = urlencode(strtolower($convert->convert()));
@@ -54,12 +57,17 @@ Route::get('/product/{id}/{name}', function ($id, $name) {
     ]);
 })->name('product_item');
 
-Route::controller(
-    AuthController::class
-)->name('auth.')->group(function () {
+
+Route::controller(AuthController::class)->name('auth.')->group(function () {
     Route::get('/login', 'login')->name('login');
+    Route::get('/logout', 'logout')->name('logout');
     Route::get('/register', 'register')->name('register');
 
     Route::post('/login/auth', 'auth')->name('auth');
     Route::post('/register/create', 'create')->name('create');
 });
+
+
+Route::get(
+    '/profile/{id}/{name}', [ProfileController::class, 'profile']
+)->name('profile')->middleware('auth');

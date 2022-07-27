@@ -1,103 +1,3 @@
-:root {
-    --main-color: sandybrown;
-}
-
-p,
-h4 {
-    margin: 0;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: #333;
-}
-
-.description {
-    margin: 20px 0;
-}
-
-.flex-element {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.narrow-element {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.start-element {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.triangle {
-    position: absolute;
-}
-
-.no-select {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
-}
-
-.no-transition {
-  -webkit-transition: none !important;
-  -moz-transition: none !important;
-  -o-transition: none !important;
-  transition: none !important;
-}
-
-.cursor-p {
-    cursor: pointer;
-}
-
-.bg-red {
-    background-color: #fe4a49;
-}
-
-.bg-blue {
-    background-color: #2ab7ca;
-}
-
-.bg-yellow {
-    background-color: #fed766;
-}
-
-.bg-green {
-    background-color: #7bc043;
-}
-
-.container-90 {
-    width: 90%;
-    margin: auto;
-}
-
-.color-text {
-    color: var(--main-color);
-}
-
-.width-100 {
-    width: 100%;
-}
-
-.br-10px {
-    border-radius: 10px;
-}
-
 .header__col {
     display: flex;
 }
@@ -151,4 +51,62 @@ a {
     display: inline-block;    
     font-size: 40px;
     cursor: pointer;
+}
+
+@media (max-width:  992px) {
+    .header__link-item {
+        margin-left: 35px;
+    }
+}
+
+@media (min-width:  768px) {
+    .h-header-auto {
+        height: auto !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        padding: 18px 0;
+    }
+
+    .header__link ul {
+        height: 0;
+        position: absolute;
+        top: 100%;
+        flex-direction: column;
+        width: 100%;
+        box-shadow: 0 16px 22px #dfdfdf;
+        overflow: hidden;
+        transition-duration: 0.5s;
+        z-index: 99;
+    }
+
+    .header__link li,
+    .header__link-item {
+        width: 100%;
+    }
+
+    .header__link-item {
+        margin-left: 0;
+        padding: 24px 0;
+        display: flex;
+        justify-content: center;
+        transition-duration: 0.1s;
+    }
+
+    .header__link-item:hover {
+        color: #fff;
+        background-color: var(--main-color);
+    }
+
+    .header__bars {
+        display: flex;
+        align-items: center;
+    }
+
+    .header__link {
+        justify-content: center;
+    }
+
 }

@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        @yield('head')
+        <link rel="stylesheet" href="/css/share.css" />
         <link rel="stylesheet" href="/css/header.css" />
+        @yield('head')
     </head>
 
     <body>
@@ -51,12 +52,18 @@
                         </ul>
                     </div>
                     <div class="col col-xxl-2 col-xl-2 col-lg-2 col-md-2 header__col">
-                        <a class="header__user" href="{{ route('auth.login') }}">
-                            @if (request()->user())
+                        @if (request()->user())
+                            <a class="header__user" href="{{ route('profile', [
+                                'id' => request()->user()->id, 
+                                'name' => convertNameURI(request()->user()->name)
+                            ]) }}">
                                 <img class="header__user-img" src="{{ request()->user()->image }}" /> 
-                            @else
+                            </a>
+                        @else
+                            <a class="header__user" href="{{ route('auth.login') }}">
                                 <i class="fa-solid fs-3 fa-arrow-right-to-bracket"></i>
-                            @endif
+                            </a>
+                        @endif
                         </a>
                     </div>
                 </div>

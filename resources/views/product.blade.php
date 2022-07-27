@@ -2,7 +2,7 @@
 
 @section('head')
 <title>{{ $product->name }}</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/index.css">
 @endsection
 
 @section('content')
