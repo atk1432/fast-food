@@ -10,6 +10,7 @@
 @endsection
 
 @section('content')
+<div class="alert alert-success" style="display: none; position: fixed;"></div>
 <div class="body">        
     <div class="search container-md">
         <div class="row">
@@ -131,7 +132,7 @@
                             <span class="products__list-item-name">{{ $product->name }}</span>
                             <span class="products__list-item-price">{{ $product->price }}đ</span>
                         </div>
-                        <i class="fas fa-plus bg-green"></i>
+                        <i class="fas fa-plus bg-green products__add-to-cart" data="{{ $product->id }}" user="{{ request()->user() ? request()->user()->name : '' }}"></i>
                     </div>                                    
                 </a>                       
             </div>                    

@@ -54,7 +54,6 @@
                     <div class="col col-xxl-2 col-xl-2 col-lg-2 col-md-2 header__col">
                         @if (request()->user())
                             <a class="header__user" href="{{ route('profile', [
-                                'id' => request()->user()->id, 
                                 'name' => convertNameURI(request()->user()->name)
                             ]) }}">
                                 <img class="header__user-img" src="{{ request()->user()->image }}" /> 

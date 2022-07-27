@@ -1,6 +1,7 @@
 @extends('share.layout')
 
 @section('head')
+<title>Profile</title>
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 <style type="text/css">
     .profile__icon {
@@ -54,40 +55,30 @@
         </div>
         <span class="d-inline-block fs-3 my-3">
             Giỏ hàng
-            <span class="badge rounded-circle bg-primary ms-2">3</span>
+            <span class="badge rounded-circle bg-primary ms-2">{{ count($carts) }}</span>
         </span>
-        <div class="row container-90">
-            <a class="col col-12 bg-light rounded my-2" href="">
-                <div class="row align-items-center overflow-hidden">
-                    <div class="col col-2">                        
-                        <img src="./cocacola.png" class="w-100" />
+        <div class="row container-90 cart">
+            @foreach ($carts as $cart)
+                <a class="col col-12 bg-light rounded my-2" href="">
+                    <div class="row align-items-center overflow-hidden">
+                        <div class="col col-2">                        
+                            <img src="{{ $cart->image }}" class="w-100" />
+                        </div>
+                        <div class="col col-9 py-2">
+                            <p class="fs-5 text-ellipsis mb-0">{{ $cart->name }}</p>
+                            <span>{{ $cart->price }}đ</span> 
+                        </div>
+                        <div class="col col-1 flex-element">
+                            <i class="fa-solid fa-xmark cart__delete"></i>
+                        </div>
                     </div>
-                    <div class="col col-9 py-2">
-                        <p class="fs-5 text-ellipsis mb-0">Cocacola nóng hổi thơm ngon</p>
-                        <span>20,000đ</span>                            
-                    </div>
-                    <div class="col col-1 flex-element">
-                        <i class="fa-solid fa-xmark"></i>                         
-                    </div>
-                </div>
-            </a>
-            <a class="col col-12 bg-light rounded my-2" href="">
-                <div class="row align-items-center overflow-hidden">
-                    <div class="col col-2">                        
-                        <img src="./cocacola.png" class="w-100" />
-                    </div>
-                    <div class="col col-9 py-2">
-                        <p class="fs-5 text-ellipsis mb-0">Cocacola nóng hổi thơm ngon</p>
-                        <span>20,000đ</span>                            
-                    </div>
-                    <div class="col col-1 flex-element">
-                        <i class="fa-solid fa-xmark"></i>                         
-                    </div>
-                </div>
-            </a>
-            <a class="col col-12 my-4 flex-element" href="">
-                <button class="px-4 py-2 fs-4 rounded bg-warning">Thanh toán</button>
-            </a>
+                </a>
+            @endforeach
+            @if ($carts)
+                <a class="col col-12 my-4 flex-element" href="">
+                    <button class="px-4 py-2 fs-4 rounded bg-warning">Thanh toán</button>
+                </a>
+            @endif
         </div>
     </div>
 </div>

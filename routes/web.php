@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Extensions\ConvertVnToEn;
 use App\Models\Product;
@@ -69,5 +70,15 @@ Route::controller(AuthController::class)->name('auth.')->group(function () {
 
 
 Route::get(
-    '/profile/{id}/{name}', [ProfileController::class, 'profile']
+    '/profile/{name}', [ProfileController::class, 'profile']
 )->name('profile')->middleware('auth');
+
+
+Route::controller(CartController::class)
+    ->name('cart.')
+    ->prefix('cart')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('{product_id}/store', 'store')->name('store');
+        Route::get('{id}/delete', 'delete')->name('delete');
+    });

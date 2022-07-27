@@ -9,16 +9,17 @@ use App\Models\User;
 class ProfileController extends Controller
 {
 
-    public function profile(Request $request, $id, $name) {
+    public function profile(Request $request, $name) {
 
-        $user = User::findOrFail($id)->name;
+        $user_name = $request->user()->name;
 
-        if (convertNameURI($user) != $name) {
+        if (convertNameURI($user_name) != $name) {
             abort(404);
         }
 
         return view('profile.index', [
-            'user' => $request->user(),            
+            'user' => $request->user(),
+            'carts' => $request->user()->carts
         ]);
 
     }

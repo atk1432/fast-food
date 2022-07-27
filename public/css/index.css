@@ -221,6 +221,10 @@
     color: var(--main-color);
 }
 
+.products__add-to-cart:hover {
+    opacity: .8;
+}
+
 .cart__name {
     font-size: 20px;
 }
