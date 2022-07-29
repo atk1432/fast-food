@@ -42,7 +42,7 @@
                 </p>
                 <div class="profile__button d-flex flex-wrap justify-content-center">
                     <button class="p-2 m-2 rounded bg-warning">
-                        Đăng xuất
+                        <a href="{{ route('auth.logout') }}">Đăng xuất</a>
                     </button>
                     <button class="p-2 m-2 rounded bg-danger">
                         Xóa tài khoản
@@ -55,26 +55,40 @@
         </div>
         <span class="d-inline-block fs-3 my-3">
             Giỏ hàng
-            <span class="badge rounded-circle bg-primary ms-2">{{ count($carts) }}</span>
+            <span class="badge rounded-circle bg-primary ms-2 product__number">{{ count($carts) }}</span>
         </span>
         <div class="row container-90 cart">
             @foreach ($carts as $cart)
-                <a class="col col-12 bg-light rounded my-2" href="">
+                <div class="col col-12 bg-light rounded my-2 cart__item" id="{{ $cart->id }}">
                     <div class="row align-items-center overflow-hidden">
                         <div class="col col-2">                        
                             <img src="{{ $cart->image }}" class="w-100" />
                         </div>
-                        <div class="col col-9 py-2">
-                            <p class="fs-5 text-ellipsis mb-0">{{ $cart->name }}</p>
-                            <span>{{ $cart->price }}đ</span> 
-                        </div>
-                        <div class="col col-1 flex-element">
-                            <i class="fa-solid fa-xmark cart__delete"></i>
+                        <div class="col col-10 py-2">
+                            <a class="fs-5 text-ellipsis mb-0 text-dark" href="{{ route('product_item', [
+                                'id' => $cart->id,
+                                'name' => convertNameURI($cart->name)
+                            ]) }}" 
+                                >{{ $cart->name }}
+                            </a>
+                            <p class="price-text fs-3 d-flex justify-content-between align-items-center">
+                                {{ number_format($cart->price) }}đ
+                                <i class="fa-solid fa-xmark cart__delete text-dark me-2 cursor-p"></i>
+                            </p>
+                            <div class="cart__number fs-3">
+                                <span class="no-select cursor-p me-3 rounded-circle badge bg-primary" id="product-add">+</span>
+                                <span class="me-3 no-select" id="product-number">{{ 
+                                    $cart_model::where('user_id', $user->id)
+                                        ->where('product_id', $cart->id)
+                                        ->first()->number
+                                }}</span>
+                                <span class="no-select cursor-p rounded-circle bg-primary badge" id="product-plus">-</span>
+                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
             @endforeach
-            @if ($carts)
+            @if (count($carts) != 0)
                 <a class="col col-12 my-4 flex-element" href="">
                     <button class="px-4 py-2 fs-4 rounded bg-warning">Thanh toán</button>
                 </a>

@@ -17,6 +17,7 @@ class Carts extends Migration
             $table->id();
             $table->integer('product_id');
             $table->integer('user_id');
+            $table->integer('number');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class Carts extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('carts');
     }
 }

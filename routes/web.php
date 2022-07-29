@@ -79,6 +79,6 @@ Route::controller(CartController::class)
     ->prefix('cart')
     ->middleware('auth')
     ->group(function () {
-        Route::get('{product_id}/store', 'store')->name('store');
-        Route::get('{id}/delete', 'delete')->name('delete');
+        Route::get('{product_id}/{number}/store', 'store')->name('store');
+        Route::get('{product_id}/delete', 'delete')->name('delete');
     });

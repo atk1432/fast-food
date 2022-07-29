@@ -120,42 +120,6 @@ function sliderBody() {
 
 }
 
-
-function addToCart() {
-
-    var buttons = document.querySelectorAll('.products__add-to-cart')
-
-    buttons.forEach((e) => {
-        e.onclick = (event) => {
-            event.preventDefault();
-
-            var request = new XMLHttpRequest()
-            var alert = document.querySelector('.alert.alert-success')
-            var id = e.getAttribute('data')
-            var user = e.getAttribute('user')
-
-            if (!user) {
-                window.location.href = window.location.origin + '/login'
-                return
-            }
-
-            alert.style.display = 'block'
-            alert.innerText = 'Thêm vào giỏ hàng thành công!'
-
-            setTimeout(() => {
-                alert.style.display = 'none'
-            }, 3000)
-
-            request.open("GET", `cart/${id}/store`, true)
-            request.send()
-
-        }
-    })
-
-}
-
-
-addToCart()
 sliderBody()
 // headerBars_i()
 

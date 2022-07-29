@@ -130,7 +130,7 @@
                     <div class="products__list-item-info">
                         <div class="products__list-item-text">
                             <span class="products__list-item-name">{{ $product->name }}</span>
-                            <span class="products__list-item-price">{{ $product->price }}đ</span>
+                            <span class="products__list-item-price">{{ number_format( $product->price) }}đ</span>
                         </div>
                         <i class="fas fa-plus bg-green products__add-to-cart" data="{{ $product->id }}" user="{{ request()->user() ? request()->user()->name : '' }}"></i>
                     </div>                                    

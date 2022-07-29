@@ -5,6 +5,10 @@
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 @endsection
 
+@section('index_script')
+<script type="text/javascript" src="/js/product.js"></script>
+@endsection
+
 @section('content')
 <div class="cart container-md">
 	<h2 class="description">{{ $product->name }}</h2>
@@ -29,21 +33,21 @@
 			</div>
 			<div class="row cart__count-container">	
 				<div class="col cart__count">			
-					<button class="cart__button br-10px">							
+					<button class="cart__button br-10px" id="product-add">							
 						<i class="fas fa-plus"></i>
 					</button>							
-					<h4 class="cart__number">1</h4>								
-					<button class="cart__button br-10px">
+					<h4 class="cart__number" id="product-number">1</h4>
+					<button class="cart__button br-10px" id="product-plus">
 						<i class="fas fa-minus"></i>
 					</button>									
 				</div>
 				<div class="col">
-					<p class="cart__price color-text">{{ $product->price }}đ</p>					
+					<p class="cart__price color-text">{{ number_format($product->price) }}đ</p>					
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<button class="cart__add">
+					<button class="cart__add" product_id="{{ $product->id }}">
 						Thêm vào giỏ hàng
 					</button>
 				</div>

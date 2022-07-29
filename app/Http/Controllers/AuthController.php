@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -72,7 +73,11 @@ class AuthController extends Controller
         ])) {
             $request->session()->regenerate();
 
-            return redirect('/');
+            $back_uri = Cookie::get('back_uri');
+            if ($back_uri)
+                return redirect($back_uri);
+            else
+                return redirect('/');
         } else {
             return back()->withErrors([
                 'invalid' => 'Email hoặc mật khẩu không hợp lệ.'
@@ -108,7 +113,5 @@ class AuthController extends Controller
         return redirect()->route('auth.login');
 
     }
-
-
 
 }

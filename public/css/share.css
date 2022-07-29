@@ -107,3 +107,18 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.price-text {
+    color: var(--main-color);
+}
+
+.alert__container {
+    position: fixed;
+    right: 14px;
+    top: 40px;
+    z-index: 200;
+}
+
+.alert__container .alert {
+    transition-duration: .2s;
+}

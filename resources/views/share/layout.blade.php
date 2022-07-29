@@ -13,6 +13,7 @@
     </head>
 
     <body>
+        <div class="alert__container"></div>
         <header class="header">
             <div class="container-md">
                 <div class="row">
@@ -60,7 +61,7 @@
                             </a>
                         @else
                             <a class="header__user" href="{{ route('auth.login') }}">
-                                <i class="fa-solid fs-3 fa-arrow-right-to-bracket"></i>
+                                <i class="fa-solid fs-3 fa-arrow-right-to-bracket" id="logout"></i>
                             </a>
                         @endif
                         </a>

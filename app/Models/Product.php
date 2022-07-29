@@ -3,17 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
 class Product extends Model 
 {
-		
-	protected $fillable = [
-		'name', 'price', 'image', 'energy', 'weight', 'delivery', 'description'
-	];
+    use HasFactory;
 
-	public static function validate($request) {
-		$validated = $request->validate([
+    protected $fillable = [
+    	'name', 'price', 'image', 'energy', 'weight', 'delivery', 'description'
+    ];
+
+    public function price_format(): Attribute {
+        return Attribute::make(
+            fn ($value) => $value,
+        );
+    }
+
+    public static function validate($request) {
+    	$validated = $request->validate([
             'name' => 'required|max:100',
             'price' => 'required|integer',
             'image' => 'required|image|max:10000',
@@ -24,17 +33,17 @@ class Product extends Model
         ]);
 
         return $validated;
-	}
+    }
 
-	public static function createUriImage($request) {
+    public static function createUriImage($request) {
 
-		$path = $request->file('image')->store('public');
+    	$path = $request->file('image')->store('public');
 
         $uri = asset('data/'.explode("/", $path)[1]);
 
         return $uri;
 
-	}
+    }
 
 	// public static function findOrAbort()
 

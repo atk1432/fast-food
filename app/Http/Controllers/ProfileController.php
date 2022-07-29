@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Cart;
 
 
 class ProfileController extends Controller
@@ -19,7 +19,8 @@ class ProfileController extends Controller
 
         return view('profile.index', [
             'user' => $request->user(),
-            'carts' => $request->user()->carts
+            'carts' => $request->user()->carts,
+            'cart_model' => Cart::class
         ]);
 
     }
