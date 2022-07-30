@@ -90,30 +90,5 @@ function cartDelete() {
 
 }
 
-function incrementButton() {
-
-    var adds = document.querySelectorAll('#product-add')
-    // var numbers = document.querySelectoAll('#product-number')
-    var pluses = document.querySelectorAll('#product-plus')
-
-    adds.forEach((add) => {        
-        add.onclick = () => {
-            add.nextElementSibling.innerText = parseInt(add.nextElementSibling.innerText) + 1
-        }
-    })
-
-    pluses.forEach((plus) => {        
-        plus.onclick = () => {
-            var calc = parseInt(plus.previousElementSibling.innerText) - 1
-            if (calc < 1)
-                plus.previousElementSibling.innerText = 1
-            else 
-                plus.previousElementSibling.innerText = calc
-        }
-    })
-
-}
-
-incrementButton()
 cartDelete()
 profile()

@@ -54,10 +54,13 @@
                     </div>
                     <div class="col col-xxl-2 col-xl-2 col-lg-2 col-md-2 header__col">
                         @if (request()->user())
-                            <a class="header__user" href="{{ route('profile', [
-                                'name' => convertNameURI(request()->user()->name)
-                            ]) }}">
-                                <img class="header__user-img" src="{{ request()->user()->image }}" /> 
+                            <a class="header__user" href="{{ route('cart.index') }}">
+                                <i class="fas fa-shopping-cart fs-3 position-relative">
+                                    <span class="badge bg-primary rounded-circle position-absolute"
+                                    style="font-size: 12px ;top: -11px;right: -11px;">
+                                        {{ count(request()->user()->carts) }}
+                                    </span>
+                                </i>
                             </a>
                         @else
                             <a class="header__user" href="{{ route('auth.login') }}">

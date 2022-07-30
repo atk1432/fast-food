@@ -69,9 +69,9 @@ Route::controller(AuthController::class)->name('auth.')->group(function () {
 });
 
 
-Route::get(
-    '/profile/{name}', [ProfileController::class, 'profile']
-)->name('profile')->middleware('auth');
+// Route::get(
+//     '/profile/{name}', [ProfileController::class, 'profile']
+// )->name('profile')->middleware('auth');
 
 
 Route::controller(CartController::class)
@@ -79,6 +79,8 @@ Route::controller(CartController::class)
     ->prefix('cart')
     ->middleware('auth')
     ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/payment', 'payment')->name('payment');
         Route::get('{product_id}/{number}/store', 'store')->name('store');
         Route::get('{product_id}/delete', 'delete')->name('delete');
     });

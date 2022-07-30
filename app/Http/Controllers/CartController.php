@@ -10,15 +10,39 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
+
+    public function index(Request $request) {
+
+        return view('carts.index', [
+            'user' => $request->user(),
+            'carts' => $request->user()->carts,
+            'Cart' => Cart::class
+        ]);
+
+    }
+
+    public function payment(Request $request) {
+
+        $carts = $request->user()->carts;
+
+        if (count($carts) == 0) 
+            abort(404);
+
+        return view('carts.payment', [
+            'carts' => $carts,
+            'Cart' => Cart::class
+        ]);
+
+    }
     
     public function store(Request $request, $product_id, $number) {
 
-        Validator::make([
+        $validator = Validator::make([
             'product_id' => $product_id, 
             'number' => $number
         ], [
             'product_id' => 'required|integer',
-            'number' => 'required|integer'
+            'number' => 'required|integer|min:1'
         ]);
 
         if ($validator->fails()) {

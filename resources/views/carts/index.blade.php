@@ -2,7 +2,7 @@
 
 @section('head')
 <title>Profile</title>
-<link rel="stylesheet" type="text/css" href="/css/index.css">
+<!-- <link rel="stylesheet" type="text/css" href="/css/.css"> -->
 <style type="text/css">
     .profile__icon {
         position: absolute;
@@ -75,21 +75,18 @@
                                 {{ number_format($cart->price) }}đ
                                 <i class="fa-solid fa-xmark cart__delete text-dark me-2 cursor-p"></i>
                             </p>
-                            <div class="cart__number fs-3">
-                                <span class="no-select cursor-p me-3 rounded-circle badge bg-primary" id="product-add">+</span>
-                                <span class="me-3 no-select" id="product-number">{{ 
-                                    $cart_model::where('user_id', $user->id)
-                                        ->where('product_id', $cart->id)
-                                        ->first()->number
-                                }}</span>
-                                <span class="no-select cursor-p rounded-circle bg-primary badge" id="product-plus">-</span>
+                            <div class="cart__number fs-5">
+                                <span class="me-3">Số lượng: </span>
+                                <span class="me-3">{{ 
+                                    $Cart::getCart($cart->id)->number
+                                }}</span>                                
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
             @if (count($carts) != 0)
-                <a class="col col-12 my-4 flex-element" href="">
+                <a class="col col-12 my-4 flex-element" href="{{ route('cart.payment') }}">
                     <button class="px-4 py-2 fs-4 rounded bg-warning">Thanh toán</button>
                 </a>
             @endif
