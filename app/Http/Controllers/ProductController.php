@@ -129,6 +129,14 @@ class ProductController extends Controller
     {
         $data = array_map('intval', explode('&', $request->id));
 
+        $products = Product::whereIn('id', $data)->get();
+
+        foreach ($products as $product) {            
+            $file = explode('/', $product->image)[4];
+
+            Storage::disk('public')->delete($file);
+        }
+
         Product::destroy($data);
 
         return redirect()->route('products.index');
