@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Extensions\ConvertVnToEn;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Cart;
 
 
 /*
@@ -54,7 +55,8 @@ Route::get('/product/{id}/{name}', function ($id, $name) {
         abort(404);
 
     return view('product', [
-        'product' => $product
+        'product' => $product,
+        'Cart' => Cart::class
     ]);
 })->name('product_item');
 
@@ -80,6 +82,7 @@ Route::controller(CartController::class)
     ->middleware('auth')
     ->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/number-carts', 'get_cart_number')->name('get_cart_number');
         Route::get('/payment', 'payment')->name('payment');
         Route::get('{product_id}/{number}/store', 'store')->name('store');
         Route::get('{product_id}/delete', 'delete')->name('delete');

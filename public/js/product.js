@@ -4,6 +4,8 @@ var number = document.querySelector('#product-number')
 
 button.onclick = () => {
 	var text = 'Thêm vào giỏ hàng thành công!'
+	var origin = window.location.origin
+	var cartNumber = document.querySelector('.cart__header-number')
 
 	if (document.querySelector('#logout')) {
 		window.location.href = window.location.origin + '/login'
@@ -15,13 +17,26 @@ button.onclick = () => {
 
 	request.open(
 		'GET',
-		window.location.origin + `/cart/${product_id}/${number.innerText}/store`,
+		origin + `/cart/${product_id}/${number.innerText}/store`,
 		true
 	)
 
 	request.send()
 
 	alert.innerHTML += `<div class="alert alert-success">${text}</div>`
+
+	// Send to receive number cart
+	request = new XMLHttpRequest();
+	request.onreadystatechange = function () {
+		if (this.status == 200) {
+			var response = this.responseText
+			if (response.length < 10) {
+				cartNumber.innerText = response
+			}
+		}
+	}
+	request.open('GET', origin + '/cart/number-carts', true)
+	request.send()
 
 	setTimeout(() => {
 		alert.children[0].style.opacity = '0'

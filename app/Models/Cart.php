@@ -20,11 +20,19 @@ class Cart extends Model
         $cart = Cart::where('user_id', request()->user()->id)
             ->where('product_id', $cart_id)->first();
 
-        if (!$cart)
-            abort(404);
-
         return $cart;
 
+    }
+
+    public static function getNumberInCart($cart_id)
+    {
+        $cart = Cart::getCart($cart_id);
+
+        if ($cart) {
+            return $cart->number;
+        } else {
+            return 1;
+        }
     }
 
     public static function getTotal()

@@ -36,7 +36,13 @@
 					<button class="cart__button br-10px" id="product-add">							
 						<i class="fas fa-plus"></i>
 					</button>							
-					<h4 class="cart__number" id="product-number">1</h4>
+					<h4 class="cart__number" id="product-number">
+                        @if (request()->user())
+                            {{ $Cart::getNumberInCart($product->id) }}
+                        @else
+                            {{ 1 }}
+                        @endif
+                    </h4>
 					<button class="cart__button br-10px" id="product-plus">
 						<i class="fas fa-minus"></i>
 					</button>									

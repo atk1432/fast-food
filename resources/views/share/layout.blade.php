@@ -56,7 +56,7 @@
                         @if (request()->user())
                             <a class="header__user" href="{{ route('cart.index') }}">
                                 <i class="fas fa-shopping-cart fs-3 position-relative">
-                                    <span class="badge bg-primary rounded-circle position-absolute"
+                                    <span class="cart__header-number badge bg-primary rounded-circle position-absolute"
                                     style="font-size: 12px ;top: -11px;right: -11px;">
                                         {{ count(request()->user()->carts) }}
                                     </span>

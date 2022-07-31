@@ -82,4 +82,11 @@ class CartController extends Controller
         $cart->delete();
 
     }
+
+    public function get_cart_number(Request $request) {
+
+        $carts = $request->user()->carts;
+        return count($carts);
+
+    }
 }
