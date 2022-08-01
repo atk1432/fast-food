@@ -60,14 +60,16 @@
         <div class="row container-90 mb-4">
             <div class="col col-12">
                 <div class="row bg-light justify-content-between align-items-center px-3 py-2 rounded fs-4">
+                    @foreach ($user_orders as $user_order)
                     <div class="col col-4">
-                        <a href="" class="text-decoration-underline">
-                            #{{  }}
+                        <a href="{{ route('order.order', ['id' => $user_order->id]) }}" class="text-decoration-underline">
+                            #{{ $user_order->id }}
                         </a>
                     </div>
                     <div class="col col-1">
                         <i class="fa-solid fa-xmark cart__delete text-dark float-end cursor-p"></i>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

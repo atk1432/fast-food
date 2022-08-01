@@ -9,9 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $hidden = [
+    protected $fillable = [
         'user_order_id',
         'product_id',
         'number'
-    ];
+    ]
 }

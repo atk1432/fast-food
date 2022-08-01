@@ -16,8 +16,4 @@ class UserOrder extends Model
         'address',
         'info_for_shipper'
     ];
-
-    protected $hidden = [
-        'user_id'
-    ];
 }

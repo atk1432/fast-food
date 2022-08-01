@@ -95,5 +95,6 @@ Route::controller(OrderController::class)
 ->prefix('order')
 ->middleware('auth')
 ->group(function () {
+    Route::get('/order/{id}', 'order')->name('order')->where('id', '[0-9]+');
     Route::post('/create', 'create')->name('create');
 });

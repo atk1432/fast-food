@@ -47,4 +47,18 @@ class OrderController extends Controller
 
     }
 
+    public function order(Request $request, $id) {
+
+        $user_order = $request->user()->user_orders->find($id);
+
+        if (!$user_order)
+            abort(404);
+
+        return view('orders.order', [
+            'user' => $request->user(),
+            'user_order' => $user_order
+        ]);
+
+    }
+
 }
