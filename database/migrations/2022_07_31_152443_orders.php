@@ -16,7 +16,8 @@ class Orders extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_order_id');
-            $table->integer('product_order_id');
+            $table->integer('product_id');
+            $table->integer('number');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class Orders extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('orders');
     }
 }

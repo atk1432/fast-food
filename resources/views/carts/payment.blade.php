@@ -12,21 +12,33 @@
 
 
 @section('content')
-<form method="post" style="width: 100%;">
+<form method="post" action="{{ route('order.create') }}" style="width: 100%;">
+    @csrf
     <div class="container-md mt-5">
         <div class="row container-90">
             <div class="col col-sm-6 col-12 fs-4 mb-3">            
-                <input type="text" name="name" id="name" class="rounded px-3 w-100" autofocus placeholder="Họ và tên" />
-                <!-- <p class="fs-5 text-danger ms-2">This is a error text!</p> -->
+                <input type="text" name="name" id="name" class="rounded px-3 w-100" autofocus placeholder="Họ và tên" value="{{ old('name') }}" />
+                @error('name')
+                    <p class="fs-5 text-danger ms-2">{{ $message }}</p>
+                @enderror
             </div>
             <div class="col col-sm-6 col-12 fs-4 mb-3">            
-                <input type="email" name="email" id="email" class="rounded px-3 w-100" placeholder="Email" />
+                <input type="text" name="address" id="address" class="rounded px-3 w-100" placeholder="Địa chỉ" value="{{ old('address') }}" />
+                @error('address')
+                    <p class="fs-5 text-danger ms-2">{{ $message }}</p>
+                @enderror
             </div>
             <div class="col col-sm-6 col-12 fs-4 mb-3">            
-                <input type="tel" name="phone-number" id="phone-number" class="rounded px-3 w-100"  placeholder="Số điện thoại" />
+                <input type="tel" name="phone_number" id="phone_number" class="rounded px-3 w-100"  placeholder="Số điện thoại" value="{{ old('phone_number') }}" />
+                @error('phone_number')
+                    <p class="fs-5 text-danger ms-2">{{ $message }}</p>
+                @enderror
             </div>
             <div class="col col-sm-12 col-12 fs-4 mb-3">            
-                <textarea name="info" id="info" class="rounded px-3 w-100 fs-5 py-3" placeholder="Thông tin cho người giao hàng"></textarea>            
+                <textarea name="info_for_shipper" id="info_for_shipper" class="rounded px-3 w-100 fs-5 py-3" placeholder="Thông tin cho người giao hàng" value="{{ old('info_for_shipper') }}"></textarea>
+                @error('info_for_shipper')
+                    <p class="fs-5 text-danger ms-2">{{ $message }}</p>
+                @enderror   
             </div>
         </div>
     </div>

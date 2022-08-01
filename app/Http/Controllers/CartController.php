@@ -16,6 +16,7 @@ class CartController extends Controller
         return view('carts.index', [
             'user' => $request->user(),
             'carts' => $request->user()->carts,
+            ''
             'Cart' => Cart::class
         ]);
 

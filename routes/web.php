@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Extensions\ConvertVnToEn;
 use App\Models\Product;
@@ -77,13 +78,22 @@ Route::controller(AuthController::class)->name('auth.')->group(function () {
 
 
 Route::controller(CartController::class)
-    ->name('cart.')
-    ->prefix('cart')
-    ->middleware('auth')
-    ->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/number-carts', 'get_cart_number')->name('get_cart_number');
-        Route::get('/payment', 'payment')->name('payment');
-        Route::get('{product_id}/{number}/store', 'store')->name('store');
-        Route::get('{product_id}/delete', 'delete')->name('delete');
-    });
+->name('cart.')
+->prefix('cart')
+->middleware('auth')
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/number-carts', 'get_cart_number')->name('get_cart_number');
+    Route::get('/payment', 'payment')->name('payment');
+    Route::get('{product_id}/{number}/store', 'store')->name('store');
+    Route::get('{product_id}/delete', 'delete')->name('delete');
+});
+
+
+Route::controller(OrderController::class)
+->name('order.') 
+->prefix('order')
+->middleware('auth')
+->group(function () {
+    Route::post('/create', 'create')->name('create');
+});

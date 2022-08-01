@@ -61,8 +61,8 @@
             <div class="col col-12">
                 <div class="row bg-light justify-content-between align-items-center px-3 py-2 rounded fs-4">
                     <div class="col col-4">
-                        <a href="" class="text-decoration-underline">                            
-                            #343278
+                        <a href="" class="text-decoration-underline">
+                            #{{  }}
                         </a>
                     </div>
                     <div class="col col-1">
