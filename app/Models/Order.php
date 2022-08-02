@@ -13,5 +13,5 @@ class Order extends Model
         'user_order_id',
         'product_id',
         'number'
-    ]
+    ];
 }

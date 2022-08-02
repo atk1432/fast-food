@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Product;
+
+
 class UserOrder extends Model
 {
     use HasFactory;
@@ -16,4 +19,23 @@ class UserOrder extends Model
         'address',
         'info_for_shipper'
     ];
+
+    public function products() {
+        return $this->belongsToMany(Product::class, 'orders')
+                    ->withPivot('number');
+    }
+
+    public static function getTotal($user_order_id) {
+
+        $user_order = request()->user()->user_orders->find($user_order_id);
+        $products = $user_order->products;
+        $total = 0;
+
+        foreach ($products as $product) {
+            $total += $product->pivot->number * $product->price;
+        }
+
+        return number_format($total);
+
+    }
 }

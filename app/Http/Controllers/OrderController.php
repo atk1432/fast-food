@@ -56,7 +56,9 @@ class OrderController extends Controller
 
         return view('orders.order', [
             'user' => $request->user(),
-            'user_order' => $user_order
+            'user_order' => $user_order,
+            'products' => $user_order->products,
+            'UserOrder' => UserOrder::class
         ]);
 
     }

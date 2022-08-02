@@ -15,12 +15,6 @@ class Product extends Model
     	'name', 'price', 'image', 'energy', 'weight', 'delivery', 'description'
     ];
 
-    public function price_format(): Attribute {
-        return Attribute::make(
-            fn ($value) => $value,
-        );
-    }
-
     public static function validate($request) {
     	$validated = $request->validate([
             'name' => 'required|max:100',
@@ -45,6 +39,6 @@ class Product extends Model
 
     }
 
-	// public static function findOrAbort()
+	
 
 }
