@@ -41,9 +41,11 @@
                     </i>
                 </p>
                 <div class="profile__button d-flex flex-wrap justify-content-center">
-                    <button class="p-2 m-2 rounded bg-warning">
-                        <a href="{{ route('auth.logout') }}">Đăng xuất</a>
-                    </button>
+                    <a href="{{ route('auth.logout') }}">
+                        <button class="p-2 m-2 rounded bg-warning">
+                            Đăng xuất
+                        </button>
+                    </a>
                     <button class="p-2 m-2 rounded bg-danger">
                         Xóa tài khoản
                     </button>

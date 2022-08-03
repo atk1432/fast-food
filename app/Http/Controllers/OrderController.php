@@ -7,6 +7,8 @@ use App\Http\Requests\OrderRequest;
 use App\Models\UserOrder;
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Status;
+use App\Models\User;
 use Carbon\Carbon;
 
 
@@ -30,7 +32,7 @@ class OrderController extends Controller
 
         $orders = [];
         foreach ($carts as $cart) {
-            $orders[] =  [
+            $orders[] = [
                 'user_order_id' => $user_order->id,
                 'product_id' => $cart['product_id'],
                 'number' => $cart['number'],
@@ -63,10 +65,33 @@ class OrderController extends Controller
 
     }
 
+
+    /**
+     * For Admin
+     * 
+     * 
+     */
     public function list_orders() {
 
         return view('admin.orders', [
-            'orders' => UserOrder::all()
+            'orders' => UserOrder::all(),
+            'statuses' => Status::all()
+        ]);
+
+    }
+
+    public function detail_order($user_id, $user_order_id) {
+
+        $user = User::find($user_id);
+        $user_order = $user->user_orders->find($user_order_id); 
+
+        // dd($user_order->products);
+
+        return view('orders.order', [
+            'user' => $user,
+            'user_order' => $user_order,
+            'products' => $user_order->products,
+            'UserOrder' => UserOrder::class
         ]);
 
     }

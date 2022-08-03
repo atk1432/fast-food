@@ -39,7 +39,7 @@
                         <li class="my-4">
                             <div class="row">
                                 @foreach ($products as $product)
-                                <div class="col col-12 bg-light rounded my-2">
+                                <div class="col col-12 bg-light rounded my- 2">
                                     <div class="row gx-2">
                                         <div class="col col-2">
                                             <img class="w-75" src="{{ $product->image }}">
@@ -61,7 +61,14 @@
                         </li>
                         <li class="fs-4">
                             Tổng tiền: 
-                            <span class="price-text">{{ $UserOrder::getTotal($user_order->id) }}đ</span>
+                            <span class="price-text">
+                                @if (request()->user()->role != 'admin')
+                                    {{ $UserOrder::getTotal($user_order->id) }}
+                                @else
+                                    {{ $UserOrder::getTotal($user_order->id, $user->id) }}
+                                @endif
+                                đ
+                            </span>
                         </li>
                     </ul>
                 </td>

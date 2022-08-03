@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Product;
 use App\Models\Status;
+use App\Models\User;
 
 
 class UserOrder extends Model
@@ -27,9 +28,14 @@ class UserOrder extends Model
                     ->withPivot('number');
     }
 
-    public static function getTotal($user_order_id) {
+    public static function getTotal($user_order_id, $user_id = NULL) {
 
-        $user_order = request()->user()->user_orders->find($user_order_id);
+        if (request()->user()->role != 'admin') {
+            $user_order = request()->user()->user_orders->find($user_order_id);
+        } else {
+            $user_order = User::find($user_id)->user_orders->find($user_order_id);
+        }
+
         $products = $user_order->products;
         $total = 0;
 
@@ -41,7 +47,7 @@ class UserOrder extends Model
 
     }
 
-    public function statuss() {
-        return $this->belongsTo(Status::class, 'status', 'sdfsd');
+    public function status_str() {
+        return $this->belongsTo(Status::class, 'status');
     }
 }

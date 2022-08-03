@@ -36,6 +36,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
 
     Route::get('/orders', [OrderController::class, 'list_orders']);
 
+    Route::get('/orders/{user_id}/{user_order_id}', [OrderController::class, 'detail_order'])->name('admin.detail_order');
 });
 
 

@@ -17,15 +17,18 @@
     <form method="get">
         <div class="row my-4">
             <div class="col col-sm-4 col-12">                
-                <input type="number" name="id" />
+                <input type="number" name="id" placeholder="Tìm ID" />
             </div>
             <div class="col col-sm-4 col-12">
                 <input type="date" name="date" />                
             </div>
             <div class="col col-sm-4 col-12">                
                 <select class="form-select w-100" name="status">
-                    <option value="">Chưa xử lí</option>
-                    <option value="">Đã xử lí</option>
+                    @foreach ($statuses as $status)
+                    <option value="{{ $status->id }}">
+                        {{ $status->name }}
+                    </option>
+                    @endforeach
                 </select>
             </div>
             <div class="col col-2">                    
@@ -52,10 +55,14 @@
                 <td>{{ $order->phone_number }}</td>
                 <td>{{ $order->address }}</td>
                 <td>
-                    <i>{{ $order->statuss }}</i>
+                    <i>{{ $order->status_str->name }}</i>
                 </td>
                 <td>{{ $order->created_at }}</td>
-                <td>                        
+                <td>                 
+                    <a href="{{ route('admin.detail_order', [
+                        'user_id' => $order->user_id,
+                        'user_order_id' => $order->id
+                    ]) }}">Chi tiết</a>       
                     <a href="" class="badge bg-warning text-dark">Update</a>
                     <a href="" class="badge bg-danger text-dark">Hủy</a>
                 </td>
