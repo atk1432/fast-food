@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Product;
+use App\Models\Status;
 
 
 class UserOrder extends Model
@@ -17,7 +18,8 @@ class UserOrder extends Model
         'name',
         'phone_number',
         'address',
-        'info_for_shipper'
+        'info_for_shipper',
+        'status'
     ];
 
     public function products() {
@@ -37,5 +39,9 @@ class UserOrder extends Model
 
         return number_format($total);
 
+    }
+
+    public function statuss() {
+        return $this->belongsTo(Status::class, 'status', 'sdfsd');
     }
 }

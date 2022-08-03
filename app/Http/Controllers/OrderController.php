@@ -63,4 +63,12 @@ class OrderController extends Controller
 
     }
 
+    public function list_orders() {
+
+        return view('admin.orders', [
+            'orders' => UserOrder::all()
+        ]);
+
+    }
+
 }

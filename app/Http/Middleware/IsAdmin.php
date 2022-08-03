@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 
-class StoreUriPrevious
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,19 +14,10 @@ class StoreUriPrevious
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function no_store_uri() {
-        return [
-            route('auth.login'),
-            route('auth.register'),
-            route('auth.auth'),
-            route('auth.create')
-        ];
-    }
-
     public function handle(Request $request, Closure $next)
     {
-        if (!in_array(url()->current(), $this->no_store_uri()) )
-            Cookie::queue('back_uri', url()->current());
+        if ($request->user()->role != 'admin')
+            abort(404);
 
         return $next($request);
     }

@@ -23,7 +23,7 @@ use App\Models\Cart;
 |
 */
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
 
     Route::post(
         'products/delete', [ProductController::class, 'delete']
@@ -33,6 +33,8 @@ Route::prefix('admin')->group(function () {
     ]);
 
     Route::resource('users', AuthController::class);
+
+    Route::get('/orders', [OrderController::class, 'list_orders']);
 
 });
 
