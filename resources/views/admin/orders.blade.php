@@ -54,7 +54,7 @@
                 <td>{{ $order->name }}</td>
                 <td>{{ $order->phone_number }}</td>
                 <td>{{ $order->address }}</td>
-                <td>
+                <td class="order__status">
                     <i>{{ $order->status_str->name }}</i>
                 </td>
                 <td>{{ $order->created_at }}</td>
@@ -62,9 +62,7 @@
                     <a href="{{ route('admin.detail_order', [
                         'user_id' => $order->user_id,
                         'user_order_id' => $order->id
-                    ]) }}">Chi tiết</a>       
-                    <a href="" class="badge bg-warning text-dark">Update</a>
-                    <a href="" class="badge bg-danger text-dark">Hủy</a>
+                    ]) }}">Chi tiết</a>               
                 </td>
             </tr>
             @endforeach
@@ -94,6 +92,5 @@
             }
         }
     })
-
 </script>
 @endsection

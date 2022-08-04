@@ -91,8 +91,28 @@ class OrderController extends Controller
             'user' => $user,
             'user_order' => $user_order,
             'products' => $user_order->products,
+            'statuses' => Status::all(),
             'UserOrder' => UserOrder::class
         ]);
+
+    }
+
+    public function update_status_order(
+        Request $request, 
+        $status,
+        $user_order_id
+    ) {
+        
+        $user_order = UserOrder::find($user_order_id);
+
+        if (!$user_order) abort(404);
+        // dd($user_order_id);
+
+        Status::findOrFail($status);
+
+        $user_order->status = $status;
+
+        $user_order->save();
 
     }
 

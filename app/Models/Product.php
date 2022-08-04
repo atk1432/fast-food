@@ -33,7 +33,7 @@ class Product extends Model
 
     	$path = $request->file('image')->store('public');
 
-        $uri = asset('data/'.explode("/", $path)[1]);
+        $uri = 'data/'.explode("/", $path)[1];
 
         return $uri;
 

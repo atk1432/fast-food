@@ -60,20 +60,25 @@
             <span class="badge rounded-circle bg-primary ms-2 product__number"></span>
         </span>
         <div class="row container-90 mb-4">
-            <div class="col col-12">
+            @foreach ($user_orders as $user_order)
+            <div class="col col-12 my-2">
                 <div class="row bg-light justify-content-between align-items-center px-3 py-2 rounded fs-4">
-                    @foreach ($user_orders as $user_order)
-                    <div class="col col-4">
+                    <div class="col col-2">
                         <a href="{{ route('order.order', ['id' => $user_order->id]) }}" class="text-decoration-underline">
                             #{{ $user_order->id }}
                         </a>
                     </div>
+                    <div class="col col-4">
+                        <i>
+                            {{ $user_order->status_str->name }}
+                        </i>
+                    </div>
                     <div class="col col-1">
                         <i class="fa-solid fa-xmark cart__delete text-dark float-end cursor-p"></i>
                     </div>
-                    @endforeach
                 </div>
             </div>
+            @endforeach
         </div>
         <span class="d-inline-block fs-3 my-3">
             Giỏ hàng

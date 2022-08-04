@@ -37,6 +37,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/orders', [OrderController::class, 'list_orders']);
 
     Route::get('/orders/{user_id}/{user_order_id}', [OrderController::class, 'detail_order'])->name('admin.detail_order');
+
+    Route::get('/orders/update/{status}/{user_order_id}', [OrderController::class, 'update_status_order']);
 });
 
 
@@ -51,9 +53,9 @@ Route::get('/product/{id}/{name}', function ($id, $name) {
     $product = Product::findOrFail($id);
 
     $convert = new ConvertVnToEn($product->name);
-    $name_product = urlencode(strtolower($convert->convert()));
+    $name_product = strtolower($convert->convert());
 
-    // error_log($name_product);
+    $name_product = str_replace(' ', '+', $name_product);
 
     if (!$product || $name_product != $name) 
         abort(404);
